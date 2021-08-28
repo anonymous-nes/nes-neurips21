@@ -23,6 +23,13 @@ NES-RE | NES-RS
 <img src=".github/images/nes-re-es-error-bar-1.png" width="350" height="400"> | <img src=".github/images/nes-rs-es-error-bars-1.png" width="350" height="400">
 <img src=".github/images/nes-re-bma-1.png" width="350" height="400">| <img src=".github/images/nes-rs-bma-1.png" width="350" height="400">
 
+#### EDIT (28th August 2021):
+
+We added another ESA which operates as follows: we use ForwardSelect as before but instead use it to minimize the objective "validation loss - diversity_strength * diversity" where diversity is defined as the average (across base learners and data points) l_2 distance between a base learner's predicted class probabilities and the ensemble's predicted class probabilities. The plots below show the results for different choices of the "diversity_strength" hyperparameter. In summary, if appropriately tuned, ForwardSelect with diversity performs slightly better than usual ForwardSelect for NES-RS, though for NES-RE, the diversity term seems to harm performance. We will include this result with the above ESA results in the updated paper. 
+
+NES-RE | NES-RS
+:-------------------------:|:-------------------------:
+<img src=".github/images/esa-diversity-nes-re.png" width="350" height="400"> | <img src=".github/images/esa-diversity-nes-rs.png" width="350" height="400">
 
 
 ### Figure 2: Generating the architecture pool using weight-sharing NAS algorithms (reviewer dkBq)
@@ -61,5 +68,3 @@ We trained the ensembles constructed by NES and the best performing deep ensembl
 We conducted the ablation study in Figure 7 of our paper (which is done on Tiny ImageNet) on a second dataset, CIFAR-10, where we compare NES ensembles to deep ensembles _with ensemble selection over random initializations_. The results are similar in that NES algorithms are still amongst the best performing methods, with NES-RE outperforming all other methods by a clear margin both with equal budget (K = 400) and half budget (K = 200). 
 
 <img src=".github/images/ablation-cifar10-1.png" width="350" height="400">
-
-
